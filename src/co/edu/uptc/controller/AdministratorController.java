@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import javax.swing.event.ChangeEvent;
 
+import co.edu.uptc.model.Administrator;
 import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.MultimediaGallery;
+import co.edu.uptc.model.Plan;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
 
@@ -57,6 +59,33 @@ public class AdministratorController {
             return serie;
         }
         return null;
+    }
+
+    public Plan addPlan(String description, int value, String namePlan) {
+
+        Plan plan = new Plan(description, value, namePlan);
+
+        if (plan.getDescription().equals(description) && plan.getValue() == value) {
+            multimedia.setPlans(plan);
+            return plan;
+
+        }
+
+        return null;
+    }
+
+    public Plan findPlan(String namePlan) {
+
+        for (Plan plan : multimedia.getPlans()) {
+            if (plan.getNamePlan().equals(namePlan)) {
+                return plan;
+
+            }
+
+        }
+
+        return null;
+
     }
 
 }
