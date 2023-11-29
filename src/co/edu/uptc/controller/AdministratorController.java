@@ -196,6 +196,20 @@ public class AdministratorController {
         return false;
     }
 
+    public boolean addChapter(String serieTitle, int numberSeason, int duration, String description, String title) {
+        for (Serie serie : multimedia.getSeries()) {
+            if (serie.getTitle().equals(serieTitle)) {
+                for (int i = 0; i < serie.getSeasons().size(); i++) {
+                    if (serie.getSeasons().get(i).getNumberSeason() == numberSeason) {
+                        serie.getSeasons().get(i).addChapter(new Chapter(duration, description, title));
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public String showSeries() {
         return multimedia.getSeries().toString();
     }

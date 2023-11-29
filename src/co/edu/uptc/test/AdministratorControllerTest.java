@@ -22,24 +22,46 @@ public class AdministratorControllerTest {
     @Before
     public void setOne() {
         administrator = new AdministratorController();
+        administrator.addSerie("Prueba1", "Description1", "Category1", LocalDate.of(2020, 12, 12), 1);
+        administrator.addSeason("Prueba1", "SeasonDescription", LocalDate.of(1010, 10, 10), 1);
     }
 
     @Test
     public void addSeason() {
-
-        administrator.addSerie("Prueba1", "Description1", "Category1", LocalDate.of(2020, 12, 12), 1);
-        administrator.addSeason("Prueba1", "SeasonDescription", LocalDate.of(1010, 10, 10), 3);
-
         assertEquals(
-                "[Multimedia [title=Prueba1, description=Description1, category=Category1, publication=2020-12-12, reproduce=false]Serie [numberSeasons=1, seasons=[Season [numberOfChapters=[], description=SeasonDescription, publicationSeason=1010-10-10, numberSeason=3]]]]",
+                "[Multimedia [title=Prueba1, description=Description1, category=Category1, publication=2020-12-12, reproduce=false]Serie [numberSeasons=1, seasons=[Season [numberOfChapters=[], description=SeasonDescription, publicationSeason=1010-10-10, numberSeason=1]]]]",
                 administrator.showSeries());
 
         administrator.addSeason("Prueba1", "SeasonDescription2", LocalDate.of(2020, 02, 02), 2);
 
         assertEquals(
-                "[Multimedia [title=Prueba1, description=Description1, category=Category1, publication=2020-12-12, reproduce=false]Serie [numberSeasons=1, seasons=[Season [numberOfChapters=[], description=SeasonDescription, publicationSeason=1010-10-10, numberSeason=3], Season [numberOfChapters=[], description=SeasonDescription2, publicationSeason=2020-02-02, numberSeason=2]]]]",
+                "[Multimedia [title=Prueba1, description=Description1, category=Category1, publication=2020-12-12, reproduce=false]Serie [numberSeasons=1, seasons=[Season [numberOfChapters=[], description=SeasonDescription, publicationSeason=1010-10-10, numberSeason=1], Season [numberOfChapters=[], description=SeasonDescription2, publicationSeason=2020-02-02, numberSeason=2]]]]",
                 administrator.showSeries());
     }
+
+    @Test
+    public void addChapter() {
+
+        administrator.addChapter("Prueba1", 1, 100, "Chapter Desciption 1", "Chapter prueba 1");
+
+        assertEquals(
+                "[Multimedia [title=Prueba1, description=Description1, category=Category1, publication=2020-12-12, reproduce=false]Serie [numberSeasons=1, seasons=[Season [numberOfChapters=[Chapter [duration=100, description=Chapter Desciption 1, title=Chapter prueba 1]], description=SeasonDescription, publicationSeason=1010-10-10, numberSeason=1]]]]",
+                administrator.showSeries());
+
+        administrator.addChapter("Prueba1", 1, 200, "Chapter Desciption 2", "Chapter prueba 2");
+
+        assertEquals(
+                "[Multimedia [title=Prueba1, description=Description1, category=Category1, publication=2020-12-12, reproduce=false]Serie [numberSeasons=1, seasons=[Season [numberOfChapters=[Chapter [duration=100, description=Chapter Desciption 1, title=Chapter prueba 1], Chapter [duration=200, description=Chapter Desciption 2, title=Chapter prueba 2]], description=SeasonDescription, publicationSeason=1010-10-10, numberSeason=1]]]]",
+                administrator.showSeries());
+
+        administrator.addSeason("Prueba1", "SeasonDescription2", LocalDate.of(2020, 02, 02), 2);
+        administrator.addChapter("Prueba1", 2, 300, "Chapter Desciption 3", "Chapter prueba 3");
+
+        assertEquals(
+                "[Multimedia [title=Prueba1, description=Description1, category=Category1, publication=2020-12-12, reproduce=false]Serie [numberSeasons=1, seasons=[Season [numberOfChapters=[Chapter [duration=100, description=Chapter Desciption 1, title=Chapter prueba 1], Chapter [duration=200, description=Chapter Desciption 2, title=Chapter prueba 2]], description=SeasonDescription, publicationSeason=1010-10-10, numberSeason=1], Season [numberOfChapters=[Chapter [duration=300, description=Chapter Desciption 3, title=Chapter prueba 3]], description=SeasonDescription2, publicationSeason=2020-02-02, numberSeason=2]]]]",
+                administrator.showSeries());
+    }
+
     /*
      * @Before
      * public void setTwo() {
