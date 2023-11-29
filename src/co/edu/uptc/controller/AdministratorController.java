@@ -210,6 +210,28 @@ public class AdministratorController {
         return false;
     }
 
+    public Chapter updateChapter(String seriesTitle, int numberSeason, String oldTitle, int duration,
+            String description, String title) {
+        for (Serie serie : multimedia.getSeries()) {
+            if (serie.getTitle().equals(seriesTitle)) {
+                for (int i = 0; i < serie.getSeasons().size(); i++) {
+                    if (serie.getSeasons().get(i).getNumberSeason() == numberSeason) {
+                        for (int j = 0; j < serie.getSeasons().get(i).getNumberOfChapters().size(); j++) {
+                            if (serie.getSeasons().get(i).getNumberOfChapters().get(j).getTitle().equals(oldTitle)) {
+                                serie.getSeasons().get(i).getNumberOfChapters().get(j).setTitle(title);
+                                serie.getSeasons().get(i).getNumberOfChapters().get(j).setDescription(description);
+                                serie.getSeasons().get(i).getNumberOfChapters().get(j).setDuration(duration);
+                                return serie.getSeasons().get(i).getNumberOfChapters().get(j);
+                            }
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public String showSeries() {
         return multimedia.getSeries().toString();
     }
