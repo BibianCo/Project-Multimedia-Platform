@@ -7,8 +7,10 @@ public class Serie extends Multimedia {
     private int numberSeasons;
     private ArrayList<Season> seasons;
 
-    public Serie(String title, String description, String category, LocalDate publication, boolean reproduce) {
+    public Serie(String title, String description, String category, LocalDate publication, boolean reproduce,
+            int numberSeasons) {
         super(title, description, category, publication, reproduce);
+        this.numberSeasons = numberSeasons;
         seasons = new ArrayList<>();
     }
 
@@ -34,7 +36,7 @@ public class Serie extends Multimedia {
 
     @Override
     public String toString() {
-        return "Serie [numberSeasons=" + numberSeasons + ", seasons=" + seasons + "]" + super.toString();
+        return super.toString() + "Serie [numberSeasons=" + numberSeasons + ", seasons=" + seasons + "]";
     }
 
 }

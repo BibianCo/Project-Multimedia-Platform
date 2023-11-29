@@ -1,14 +1,15 @@
 package co.edu.uptc.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Season {
     private ArrayList<Chapter> numberOfChapters;
     private String description;
-    private String publicationSeason;
-    private String numberSeason;
+    private LocalDate publicationSeason;
+    private int numberSeason;
 
-    public Season(String description, String publicationSeason, String numberSeason) {
+    public Season(String description, LocalDate publicationSeason, int numberSeason) {
         this.description = description;
         this.publicationSeason = publicationSeason;
         this.numberSeason = numberSeason;
@@ -35,26 +36,25 @@ public class Season {
         this.description = description;
     }
 
-    public String getPublicationSeason() {
+    public LocalDate getPublicationSeason() {
         return publicationSeason;
     }
 
-    public void setPublicationSeason(String publicationSeason) {
+    public void setPublicationSeason(LocalDate publicationSeason) {
         this.publicationSeason = publicationSeason;
+    }
+
+    public int getNumberSeason() {
+        return numberSeason;
+    }
+
+    public void setNumberSeason(int numberSeason) {
+        this.numberSeason = numberSeason;
     }
 
     @Override
     public String toString() {
         return "Season [numberOfChapters=" + numberOfChapters + ", description=" + description + ", publicationSeason="
-                + publicationSeason + "]";
+                + publicationSeason + ", numberSeason=" + numberSeason + "]";
     }
-
-    public String getNumberSeason() {
-        return numberSeason;
-    }
-
-    public void setNumberSeason(String numberSeason) {
-        this.numberSeason = numberSeason;
-    }
-
 }
