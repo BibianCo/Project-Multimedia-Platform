@@ -47,4 +47,28 @@ public class User extends Person {
         this.plan = plan;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "User [userName=" + userName + ", wishList=" + wishList + ", playlist=" + playlist
+                + ", plan=" + plan
+                + "]";
+    }
+
+    public boolean equals(User user) {
+        if (user.getUserName().equals(userName)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int compareTo(User user) {
+        int result = -1;
+
+        if (this.userName == user.getUserName()) {
+            result = 0;
+        } else if (this.userName.compareTo(user.getUserName()) > 0) {
+            result = 1;
+        }
+        return result;
+    }
 }
