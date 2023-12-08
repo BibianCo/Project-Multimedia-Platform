@@ -1,33 +1,49 @@
 package co.edu.uptc.controller;
 
+import java.util.ArrayList;
+import co.edu.uptc.model.Administrator;
+import co.edu.uptc.model.Multimedia;
+import co.edu.uptc.model.User;
 import java.util.LinkedHashSet;
 import co.edu.uptc.model.Plan;
-import co.edu.uptc.model.User;
 
 public class UserController {
 
-    LinkedHashSet<User> user = new LinkedHashSet<>();
+    private User user;
+    private Administrator administrator = new Administrator(null, null, null);
+    private ArrayList<Multimedia> playMultimedias = new ArrayList<>();
+    private LinkedHashSet<User> users = new LinkedHashSet<>();
 
-    public boolean addUser(String name, String email, String pasword, String userName, String description, int value,
-            int numberUsers, String invitationCode) {
+    public boolean addListHistory(Multimedia multimedia) {
+        if (multimedia.isReproduce()) {
+            playMultimedias.add(multimedia);
+            user.setPlaylist(playMultimedias);
+            return true;
+        }
+        return false;
+    }
 
-        int size = user.size();
-        if (!name.isEmpty() && !email.isEmpty() && !pasword.isEmpty() && !userName.isEmpty()
-                && !description.isEmpty()) {
+    public ArrayList<Multimedia> showListHistory() {
+        return user.getPlaylist();
+    }
 
-            if (user.isEmpty()) {
-                user.add(new User(name, email, pasword, userName, new Plan(pasword, 0, 0, invitationCode)));
+    public boolean addUser(String name, String email, String password, String userName, Plan plan) {
+        User user = new User(name, email, password, userName, plan);
+        int size = users.size();
+        if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty() && !userName.isEmpty()) {
+            if (users.isEmpty()) {
+                users.add(user);
+                administrator.setUsers(users);
                 return true;
             } else {
-                for (User user2 : user) {
-                    System.out.println("userName 1: " + user2.getUserName());
-                    System.out.println("userName 2: " + userName + "\n");
+                for (User user2 : users) {
                     if (user2.getUserName().equals(userName)) {
                         return false;
                     }
                 }
-                user.add(new User(name, email, pasword, userName, new Plan(pasword, 0, 0, invitationCode)));
-                if (user.size() != size) {
+                users.add(user);
+                administrator.setUsers(users);
+                if (users.size() != size) {
                     return true;
                 }
             }
@@ -35,7 +51,27 @@ public class UserController {
         return false;
     }
 
-    public String showUser() {
-        return user.toString();
+    public boolean authentication(String email, String password) {
+
+        User user = findUser(email);
+        if (user != null) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public User findUser(String email) {
+        for (User user : users) {
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public String showUserList() {
+        return users.toString();
     }
 }
