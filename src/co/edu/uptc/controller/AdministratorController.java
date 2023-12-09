@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import co.edu.uptc.model.Administrator;
+import co.edu.uptc.model.Category;
 import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
 import co.edu.uptc.model.MultimediaGallery;
@@ -12,10 +13,11 @@ import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
 
 public class AdministratorController {
-    //MultimediaGallery multimediaGallery = new MultimediaGallery();
+    // MultimediaGallery multimediaGallery = new MultimediaGallery();
     private ArrayList<User> userList;
     private Administrator administrator;
     private MultimediaGalleryController mgc = new MultimediaGalleryController();
+    private Category categoryClass;
 
     public AdministratorController() {
         userList = new ArrayList<User>();
@@ -47,8 +49,11 @@ public class AdministratorController {
     }
 
     public boolean addSerie(String title, String description, String category, LocalDate publication) {
+        Serie serie = new Serie(title, description, category, publication, false);
         if (!title.isEmpty() && !description.isEmpty() && !category.isEmpty()) {
-            mgc.multimedia.setSeries(mgc.GenerateKey(true), new Serie(title, description, category, publication, false));
+            mgc.multimedia.setSeries(mgc.GenerateKey(true),
+                    serie);
+            categoryClass.setSeries(serie);
             return true;
         }
         return false;
@@ -58,6 +63,7 @@ public class AdministratorController {
         Movie m1 = new Movie(title, description, category, publication, false);
         if (m1 != null) {
             multimediaGallery.setMovies(m1);
+            categoryClass.setMovies(m1);
             return true;
         }
         return false;
@@ -81,7 +87,7 @@ public class AdministratorController {
         if (findMovie != null) {
             findMovie.setTitle(title);
             findMovie.setDescription(description);
-            findMovie.setCategory(category);
+            findMovie.setCategory(new Category(category));
             findMovie.setPublication(publication);
             findMovie.setDuration(diration);
 
@@ -108,7 +114,7 @@ public class AdministratorController {
         if (serie != null) {
             if (serie.getTitle().equals(titleSerie)) {
 
-                serie.setCategory(category);
+                serie.setCategory(new Category(category));
                 serie.setDescription(description);
                 serie.setPublication(publication);
 
