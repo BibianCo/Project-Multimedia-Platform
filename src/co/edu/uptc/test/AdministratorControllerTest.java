@@ -21,7 +21,7 @@ public class AdministratorControllerTest {
     public void setOne() {
         administrator = new AdministratorController();
     }
- 
+
     @Before
     public void setTwo() {
         setOne();
@@ -56,8 +56,9 @@ public class AdministratorControllerTest {
         Serie serie2 = administrator.deleteSerie("merlina");
         assertEquals(serie, serie2);
     }
+
     @Test
-    public void addMovie(){
+    public void addMovie() {
         assertTrue(administrator.addMovie("up", "animada", "animada", LocalDate.of(2004, 6, 14), 12));
         assertTrue(administrator.addMovie(null, null, null, null, 0));
     }

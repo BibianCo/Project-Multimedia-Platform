@@ -17,12 +17,16 @@ public class AdministratorController {
     private ArrayList<User> userList;
     private Administrator administrator;
     private MultimediaGalleryController mgc = new MultimediaGalleryController();
-    private Category categoryClass;
+    private ArrayList<Category> categories;
 
     public AdministratorController() {
         userList = new ArrayList<User>();
         administrator = new Administrator("admin1", "admin1@uptc.edu.co", "2244");
-
+        categories.add(new Category("Action"));
+        categories.add(new Category("Animated"));
+        categories.add(new Category("Comedy"));
+        categories.add(new Category("Romance"));
+        categories.add(new Category("Terror"));
     }
 
     public ArrayList<User> showUserList() {
@@ -48,22 +52,22 @@ public class AdministratorController {
         }
     }
 
-    public boolean addSerie(String title, String description, String category, LocalDate publication) {
-        Serie serie = new Serie(title, description, category, publication, false);
-        if (!title.isEmpty() && !description.isEmpty() && !category.isEmpty()) {
+    public boolean addSerie(String title, String description, int numCategory, LocalDate publication) {
+        Serie serie = new Serie(title, description, findCategory(numCategory), publication, false);
+        if (!title.isEmpty() && !description.isEmpty()) {
             mgc.multimedia.setSeries(mgc.GenerateKey(true),
                     serie);
-            categoryClass.setSeries(serie);
+            categories.get(numCategory - 1).setSeries(serie);
             return true;
         }
         return false;
     }
 
-    public boolean addMovie(String title, String description, String category, LocalDate publication, int duration) {
-        Movie m1 = new Movie(title, description, category, publication, false);
+    public boolean addMovie(String title, String description, int numCategory, LocalDate publication, int duration) {
+        Movie m1 = new Movie(title, description, findCategory(numCategory), publication, false);
         if (m1 != null) {
             multimediaGallery.setMovies(m1);
-            categoryClass.setMovies(m1);
+            categories.get(numCategory - 1).setMovies(m1);
             return true;
         }
         return false;
@@ -150,4 +154,17 @@ public class AdministratorController {
         return multimediaGallery.getMovies();
     }
 
+    public boolean addCategory(String newCategory) {
+        for (Category category : categories) {
+            if (category.getCategory().equals(newCategory)) {
+                return false;
+            }
+        }
+        categories.add(new Category(newCategory));
+        return false;
+    }
+
+    public Category findCategory(int numCategory) { // 1. Action, 2. Animated, 3. Comedy, 4. Romance, 5. Terror...
+        return categories.get(numCategory - 1);
+    }
 }

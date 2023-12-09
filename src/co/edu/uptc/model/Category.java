@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Category {
 
     private String category;
-    private ArrayList<Movie> movies = new ArrayList<>();
-    private ArrayList<Serie> series = new ArrayList<>();
+    private ArrayList<Movie> movies;
+    private ArrayList<Serie> series;
 
     public Category(String category) {
         this.category = category;
@@ -25,7 +25,7 @@ public class Category {
     }
 
     public void setMovies(Movie movie) {
-        movies.add(movie);
+        this.movies.add(movie);
     }
 
     public ArrayList<Serie> getSeries() {
@@ -33,6 +33,6 @@ public class Category {
     }
 
     public void setSeries(Serie serie) {
-        series.add(serie);
+        this.series.add(serie);
     }
 }
