@@ -8,31 +8,23 @@ import co.edu.uptc.model.Administrator;
 import co.edu.uptc.model.Category;
 import co.edu.uptc.model.Chapter;
 import co.edu.uptc.model.Movie;
-import co.edu.uptc.model.MultimediaGallery;
 import co.edu.uptc.model.Season;
 import co.edu.uptc.model.Serie;
-import co.edu.uptc.model.User;
 
 public class AdministratorController {
     // MultimediaGallery multimediaGallery = new MultimediaGallery();
-    private ArrayList<User> userList;
     private Administrator administrator;
     private MultimediaGalleryController mgc = new MultimediaGalleryController();
     private ArrayList<Category> categories = new ArrayList<>();
     // private MultimediaGallery multimedia;
 
     public AdministratorController() {
-        userList = new ArrayList<User>();
         administrator = new Administrator("admin1", "admin1@uptc.edu.co", "2244");
         categories.add(new Category("Action"));
         categories.add(new Category("Animated"));
         categories.add(new Category("Comedy"));
         categories.add(new Category("Romance"));
         categories.add(new Category("Terror"));
-    }
-
-    public ArrayList<User> showUserList() {
-        return userList;
     }
 
     public boolean validateAdminCredentials(String adminName, String adminEmail, String adminPassword) {
