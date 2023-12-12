@@ -1,6 +1,8 @@
 package co.edu.uptc.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.TreeSet;
 import co.edu.uptc.model.Administrator;
 import co.edu.uptc.model.Multimedia;
 import co.edu.uptc.model.MultimediaGallery;
@@ -31,16 +33,18 @@ public class UserController {
         return user.getPlaylist();
     }
 
-    ArrayList<User> users = new ArrayList<>();
+    TreeSet<User> users = new TreeSet<>(Comparator.comparing(User::getEmail));
     // comentareado momentaneamente
 
     public boolean addUser(String name, String email, String password, String userName, Plan plan) {
         User user = new User(name, email, password, userName, plan);
         if (!user.getFirstName().isEmpty() && !user.getEmail().isEmpty() && !user.getPassword().isEmpty()
                 && user.getPlan() != null) {
-            users.add(user);
-            administrator.setUsers(users);
-            return true;
+            if (validationUserName(userName)) {
+                users.add(user);
+                administrator.setUsers(users);
+                return true;
+            }
         }
         return false;
     }
@@ -128,5 +132,18 @@ public class UserController {
 
     public String showWishList() {
         return user.getWishList().toString();
+    }
+
+    public String showUser() {
+        return users.toString();
+    }
+
+    public boolean validationUserName(String userName) {
+        for (User user : users) {
+            if (user.getUserName().equals(userName)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

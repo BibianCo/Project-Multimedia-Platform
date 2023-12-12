@@ -54,4 +54,10 @@ public class User extends Person {
     public void addWishList(Multimedia multimedia) {
         wishList.add(multimedia);
     }
+
+    @Override
+    public String toString() {
+        return "\nUser [userName=" + userName + ", wishList=" + wishList + ", playlist=" + playlist + ", plan=" + plan
+                + super.toString() + "]";
+    }
 }

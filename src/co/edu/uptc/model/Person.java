@@ -1,7 +1,5 @@
 package co.edu.uptc.model;
 
-import java.time.Period;
-
 public class Person {
 
     private String firstName;
@@ -42,4 +40,8 @@ public class Person {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "Person [firstName=" + firstName + ", email=" + email + ", password=" + password + "]";
+    }
 }

@@ -1,11 +1,11 @@
 package co.edu.uptc.model;
 
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class Administrator extends Person {
     private int code;
 
-    private ArrayList<User> users = new ArrayList<>();
+    private TreeSet<User> users = new TreeSet<>();
 
     public Administrator(String name, String email, String password) {
         super(name, email, password);
@@ -24,12 +24,11 @@ public class Administrator extends Person {
         this.code = code;
     }
 
-    public ArrayList<User> getUsers() {
+    public TreeSet<User> getUsers() {
         return users;
     }
 
-    public void setUsers(ArrayList<User> users) {
+    public void setUsers(TreeSet<User> users) {
         this.users = users;
     }
-
 }

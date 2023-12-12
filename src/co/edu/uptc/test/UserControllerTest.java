@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import co.edu.uptc.controller.AdministratorController;
 import co.edu.uptc.controller.UserController;
 import co.edu.uptc.model.Category;
+import co.edu.uptc.model.Plan;
 
 public class UserControllerTest {
 
@@ -29,5 +30,22 @@ public class UserControllerTest {
         assertEquals(true, userController.addWishList("Serie1"));
         assertEquals(false, userController.addWishList("NoExist"));
         assertEquals(true, userController.addWishList("Movie2"));
+    }
+
+    @Test
+    void addUserTreeSet() {
+
+        userController.addUser("Name1", "email1@gmail.com", "Aaaaa12", "UserName1", new Plan());
+        // Same
+        userController.addUser("Name1", "email1@gmail.com", "Aaaaa12", "UserName1", new Plan());
+        // Diferent
+        userController.addUser("Name7", "email7@gmail.com", "Aaaaa12", "UserName7", new Plan());
+        // Same Name and Password
+        userController.addUser("Name2", "email3@gmail.com", "Aaaaa12", "UserName3", new Plan());
+        // Same email - No se añade
+        userController.addUser("Name4", "email3@gmail.com", "Aaaaa4", "UserName4", new Plan());
+        // Same userName - Se añade - Ya no
+        userController.addUser("Name4", "email4@gmail.com", "Aaaaa4", "UserName3", new Plan());
+        System.out.println(userController.showUser());
     }
 }
