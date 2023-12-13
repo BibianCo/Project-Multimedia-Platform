@@ -42,7 +42,28 @@ public class InterfazUser {
                         + "5. Your porfile");
                 option = sc.nextInt();
                 if (option > 0 && option <= 6) {
-                    flag = true;
+                    switch (option) {
+                        case 1:
+                            lookMultimedia(user);
+                            break;
+                        case 2:
+                            System.out.println("Write the name of the multimedia you want to search\n");
+                            searchName(user);
+
+                            break;
+                        case 3:
+                            searchCategory();
+                            break;
+                        case 4:
+                            favorites(user);
+                            break;
+                        case 5:
+                            porfile(user);
+                            break;
+                        default:
+                            break;
+                    }
+                    flag = false;
                 } else {
                     System.out.println(messErrorInt[1]);
                     flag = false;
@@ -60,27 +81,6 @@ public class InterfazUser {
                 flag = false;
             }
         } while (!flag);
-        switch (option) {
-            case 1:
-                lookMultimedia(user);
-                break;
-            case 2:
-                System.out.println("Write the name of the multimedia you want to search\n");
-                searchName(user);
-
-                break;
-            case 3:
-                searchCategory(user);
-                break;
-            case 4:
-                favorites(user);
-                break;
-            case 5:
-                porfile(user);
-                break;
-            default:
-                break;
-        }
     }
 
     private static void porfile(User user) {
@@ -91,9 +91,28 @@ public class InterfazUser {
     private static void favorites(User user) {
     }
 
-    private static void searchCategory(User user) {
-        System.out.println("...........................................................");
+    private static void searchCategory() {
+        int categoryNum = 0;
+        String categoryStr = "";
+        boolean op = true;
 
+        System.out.println("...........................................................\n"
+                + "Enter the category\n" + administratorController.showCategories());
+        sc.nextLine();
+        categoryStr = sc.nextLine();
+        while (op) {
+            try {
+                categoryNum = Integer.parseInt(categoryStr);
+                op = false;
+            } catch (Exception e) {
+                System.out.println("Enter a correct value");
+                categoryStr = sc.nextLine();
+            }
+        }
+        System.out.println("----------------- Series -----------------\n"
+                + administratorController.showSeriesCategory(categoryNum)
+                + "\n----------------- Movies -----------------\n"
+                + administratorController.showMoviesCategory(categoryNum));
     }
 
     public static void validationUser() {

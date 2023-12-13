@@ -12,13 +12,30 @@ public class Runner {
         int option = 0;
         do {
             try {
-                System.out.println("\n hello person " + "\n Choose how you identify\n" +
-                        "1. Administrator\n" +
-                        "2. User\n" +
-                        "3. Visitor\n" +
-                        "4. Leave");
-                option = sc.nextInt();
-                if (option > 0 && option < 5) {
+                if (option >= 0 && option < 5) {
+                    do {
+                        System.out.println("\n hello person " + "\n Choose how you identify\n" +
+                                "1. Administrator\n" +
+                                "2. User\n" +
+                                "3. Visitor\n" +
+                                "4. Leave");
+                        option = sc.nextInt();
+                        switch (option) {
+                            case 1:
+                                InterfazAdmin.main(new String[] {});
+                                option = 0;
+                                break;
+                            case 2:
+                                InterfazUser.validationUser();
+                                break;
+                            case 3:
+                                InterfazVisitor.interfaz();
+                                break;
+                            case 4:
+                                break;
+
+                        }
+                    } while (option != 4);
                     flag = true;
                 } else {
                     System.out.println("............ Invalid option ............");
@@ -32,21 +49,6 @@ public class Runner {
                 sc.nextLine();
             }
         } while (!flag);
-        switch (option) {
-            case 1:
-                InterfazAdmin.main(new String[] {});
-                break;
-            case 2:
-                InterfazUser.validationUser();
-                break;
-            case 3:
-                InterfazVisitor.interfaz();
-                break;
-            case 4:
-                break;
-
-        }
-
     }
 
 }

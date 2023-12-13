@@ -977,7 +977,7 @@ public class InterfazAdmin {
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());
             }
-        } while (opc2 != 5);
+        } while (opc2 != 6);
 
     }
 }
