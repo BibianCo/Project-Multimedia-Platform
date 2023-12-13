@@ -18,7 +18,7 @@ import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
 
 public class InterfazAdmin {
-    public static void main(String[] args) {
+    public void main() {
         Scanner sc = new Scanner(System.in);
 
         AdministratorController administratorController = new AdministratorController();
@@ -962,6 +962,8 @@ public class InterfazAdmin {
                     case 6:
                         System.out.println("Regresando al menu anterior");
                         System.out.println("---------------------------------------");
+                        System.out.println("????????????????????????????????????????????????????????????????"
+                                + administratorController.showMoviesCategory(1));
                         break;
 
                     default:

@@ -9,7 +9,7 @@ public class Serie extends Multimedia {
     private int curretChapter;
     private int code;
 
-    public Serie(String title, String description, Category category, LocalDate publication, boolean reproduce,
+    public Serie(String title, String description, String category, LocalDate publication, boolean reproduce,
             int code) {
         super(title, description, category, publication, reproduce, code);
         seasons = new ArrayList<>();
@@ -40,7 +40,8 @@ public class Serie extends Multimedia {
 
     @Override
     public String toString() {
-        return "Serie [numberSeasons=" + numberSeasons + ", seasons=" + seasons + "]" + super.toString();
+        return "\nTitle: " + super.getTitle() + "\nDescription: " + super.getDescription() + "\nLaunching: "
+                + super.getPublication() + "\nNumber of Seasons: " + numberSeasons;
     }
 
     public int getCurretChapter() {

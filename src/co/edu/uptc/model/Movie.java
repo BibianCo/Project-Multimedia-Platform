@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Movie extends Multimedia {
     private int duration;
 
-    public Movie(String title, String description, Category category, LocalDate publication, boolean reproduce,
+    public Movie(String title, String description, String category, LocalDate publication, boolean reproduce,
             int code, int duration) {
         super(title, description, category, publication, reproduce, code);
         this.duration = duration;
@@ -13,7 +13,8 @@ public class Movie extends Multimedia {
 
     @Override
     public String toString() {
-        return "Movie [duration=" + duration + super.toString();
+        return "\nTitle: " + super.getTitle() + "\nDescription: " + super.getDescription() + "\nLaunching: "
+                + super.getPublication() + "\nDuration: " + duration;
     }
 
     public int getDuration() {

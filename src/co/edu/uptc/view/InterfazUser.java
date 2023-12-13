@@ -91,7 +91,7 @@ public class InterfazUser {
     private static void favorites(User user) {
     }
 
-    private static void searchCategory() {
+    public static void searchCategory() {
         int categoryNum = 0;
         String categoryStr = "";
         boolean op = true;

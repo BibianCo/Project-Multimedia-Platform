@@ -3,10 +3,13 @@ package co.edu.uptc.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import co.edu.uptc.controller.AdministratorController;
+
 public class Runner {
 
     public static void main(String[] args) {
-
+        AdministratorController administratorController = new AdministratorController();
+        InterfazAdmin interfazAdmin = new InterfazAdmin();
         Scanner sc = new Scanner(System.in);
         boolean flag = false;
         int option = 0;
@@ -14,6 +17,8 @@ public class Runner {
             try {
                 if (option >= 0 && option < 5) {
                     do {
+                        System.out.println("????????????????????????????????????????????????????????????????"
+                                + administratorController.showMoviesCategory(1));
                         System.out.println("\n hello person " + "\n Choose how you identify\n" +
                                 "1. Administrator\n" +
                                 "2. User\n" +
@@ -22,7 +27,7 @@ public class Runner {
                         option = sc.nextInt();
                         switch (option) {
                             case 1:
-                                InterfazAdmin.main(new String[] {});
+                                interfazAdmin.main();
                                 option = 0;
                                 break;
                             case 2:

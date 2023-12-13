@@ -10,8 +10,8 @@ public class Category {
 
     public Category(String category) {
         this.category = category;
-        movies = new ArrayList<>();
-        series = new ArrayList<>();
+        this.movies = new ArrayList<>();
+        this.series = new ArrayList<>();
     }
 
     public String getCategory() {
@@ -42,5 +42,4 @@ public class Category {
     public String toString() {
         return category;
     }
-
 }

@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Multimedia {
     private String title;
     private String description;
-    private Category category;
+    private String category;
     private LocalDate publication;
     private boolean reproduce;
     private int code;
 
-    public Multimedia(String title, String description, Category category, LocalDate publication, boolean reproduce,
+    public Multimedia(String title, String description, String category, LocalDate publication, boolean reproduce,
             int code) {
         this.title = title;
         this.description = description;
@@ -35,11 +35,11 @@ public class Multimedia {
         this.description = description;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -49,12 +49,6 @@ public class Multimedia {
 
     public void setReproduce(boolean reproduce) {
         this.reproduce = reproduce;
-    }
-
-    @Override
-    public String toString() {
-        return "Multimedia title=" + title + ", description=" + description + ", category=" + category
-                + ", publication=" + publication + ", reproduce=" + reproduce + "]";
     }
 
     public LocalDate getPublication() {
