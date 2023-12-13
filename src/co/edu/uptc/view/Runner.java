@@ -17,8 +17,6 @@ public class Runner {
             try {
                 if (option >= 0 && option < 5) {
                     do {
-                        System.out.println("????????????????????????????????????????????????????????????????"
-                                + administratorController.showMoviesCategory(1));
                         System.out.println("\n hello person " + "\n Choose how you identify\n" +
                                 "1. Administrator\n" +
                                 "2. User\n" +
@@ -27,7 +25,7 @@ public class Runner {
                         option = sc.nextInt();
                         switch (option) {
                             case 1:
-                                interfazAdmin.main();
+                                InterfazAdmin.main(args);
                                 option = 0;
                                 break;
                             case 2:

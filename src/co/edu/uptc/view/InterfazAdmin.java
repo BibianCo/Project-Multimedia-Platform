@@ -18,7 +18,7 @@ import co.edu.uptc.model.Serie;
 import co.edu.uptc.model.User;
 
 public class InterfazAdmin {
-    public void main() {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         AdministratorController administratorController = new AdministratorController();
@@ -962,8 +962,6 @@ public class InterfazAdmin {
                     case 6:
                         System.out.println("Regresando al menu anterior");
                         System.out.println("---------------------------------------");
-                        System.out.println("????????????????????????????????????????????????????????????????"
-                                + administratorController.showMoviesCategory(1));
                         break;
 
                     default:
@@ -979,7 +977,7 @@ public class InterfazAdmin {
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());
             }
-        } while (opc2 != 6);
+        } while (opc2 != 5);
 
     }
 }

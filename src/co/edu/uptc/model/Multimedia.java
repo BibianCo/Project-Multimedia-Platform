@@ -67,4 +67,8 @@ public class Multimedia {
         this.code = code;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
 }

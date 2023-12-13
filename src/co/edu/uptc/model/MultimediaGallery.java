@@ -18,6 +18,9 @@ public class MultimediaGallery {
         categories.add(new Category("Comedy"));
         categories.add(new Category("Romance"));
         categories.add(new Category("Terror"));
+        movies.put(0, new Movie("cars", null, null, null, false, 0, 0));
+        movies.put(1, new Movie("rio", null, null, null, false, 0, 0));
+        series.put(0, new Serie("the 100", null, null, null, false, 0));
     }
 
     public HashMap<Integer, Serie> getSeries() {
